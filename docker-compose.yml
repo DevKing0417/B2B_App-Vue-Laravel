@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: acme-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - acme-network
+
+  db:
+    image: postgres:15
+    container_name: acme-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - acme-network
+
+  redis:
+    image: redis:alpine
+    container_name: acme-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - acme-network
+
+networks:
+  acme-network:
+    driver: bridge
+
+volumes:
+  dbdata: 
