@@ -260,14 +260,16 @@ const filteredCampaigns = computed(() => {
   return result.slice(start, end);
 });
 
+type CampaignStatus = 'pending' | 'active' | 'completed' | 'cancelled';
+
 const getStatusClass = (status: string) => {
-  const classes = {
+  const classes: Record<CampaignStatus, string> = {
     pending: 'bg-yellow-100 text-yellow-800',
     active: 'bg-green-100 text-green-800',
     completed: 'bg-blue-100 text-blue-800',
     cancelled: 'bg-red-100 text-red-800',
   };
-  return classes[status] || 'bg-gray-100 text-gray-800';
+  return classes[status as CampaignStatus] || 'bg-gray-100 text-gray-800';
 };
 
 const refreshCampaigns = async () => {
@@ -284,8 +286,8 @@ const refreshCampaigns = async () => {
     // });
     // campaigns.value = response.data.data;
     // totalItems.value = response.data.total;
-  } catch (error) {
-    console.error('Failed to fetch campaigns:', error);
+  } catch (err: unknown) {
+    console.error('Failed to fetch campaigns:', err);
     error.value = 'Failed to load campaigns';
   } finally {
     isLoading.value = false;

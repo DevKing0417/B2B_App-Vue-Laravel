@@ -144,6 +144,14 @@ import {
 } from '@heroicons/vue/24/outline';
 import Chart from 'chart.js/auto';
 
+interface Activity {
+  id: number;
+  icon: any;
+  description: string;
+  created_at: string;
+  type: 'donation' | 'campaign';
+}
+
 const stats = ref({
   totalDonations: 0,
   activeCampaigns: 0,
@@ -151,7 +159,7 @@ const stats = ref({
   averageDonation: 0,
 });
 
-const recentActivity = ref([]);
+const recentActivity = ref<Activity[]>([]);
 const donationsChart = ref<HTMLCanvasElement | null>(null);
 const campaignsChart = ref<HTMLCanvasElement | null>(null);
 

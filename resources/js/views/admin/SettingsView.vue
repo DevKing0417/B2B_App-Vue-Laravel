@@ -167,22 +167,8 @@ const settings = ref({
   maxCampaignDuration: 90,
   maxCampaignTarget: 10000,
   campaignCategories: '',
-  donationConfirmationTemplate: `Dear {{donor_name}},
-
-Thank you for your generous donation of ${{amount}} to the "{{campaign_title}}" campaign.
-
-Your support makes a difference!
-
-Best regards,
-{{company_name}}`,
-  campaignApprovalTemplate: `Dear {{creator_name}},
-
-Your campaign "{{campaign_title}}" has been approved and is now live on our platform.
-
-Thank you for your initiative!
-
-Best regards,
-{{company_name}}`,
+  donationConfirmationTemplate: 'Dear {{donor_name}},\n\nThank you for your generous donation of ${{amount}} to the "{{campaign_title}}" campaign.\n\nYour support makes a difference!\n\nBest regards,\n{{company_name}}',
+  campaignApprovalTemplate: 'Dear {{creator_name}},\n\nYour campaign "{{campaign_title}}" has been approved and is now live on our platform.\n\nThank you for your initiative!\n\nBest regards,\n{{company_name}}',
 });
 
 const isSaving = ref(false);

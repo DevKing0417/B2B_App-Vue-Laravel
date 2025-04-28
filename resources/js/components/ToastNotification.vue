@@ -103,7 +103,7 @@
 </template>
 
 <script setup lang="ts">
-import { useToastNotification } from '../composables/useToast';
+import useToastNotification from '../composables/useToast';
 
 const { toastState } = useToastNotification();
 </script> 
